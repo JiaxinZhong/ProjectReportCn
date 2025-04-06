@@ -1,0 +1,75 @@
+\chapter{模板使用}
+\zhlipsum[1-2]
+\section{图}
+图~\ref{fig:39:f020390} 表明了。
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width = 0.4\textwidth]{example-image}
+    \caption{示例图。}
+    \label{fig:39:f020390}
+\end{figure}
+
+\section{表}
+表~\ref{tab:f20} 比较了结果。
+\begin{table}[!htb]
+    \centering
+    \caption{不同参数的对比。}
+    \begin{tabular}{cccccc}
+        \toprule
+         & $\omega_0$
+         & $\gamma_0$
+         & $\gamma_1$
+         & $\kappa_1$
+         & $\kappa_\mathrm{c}$
+        \\
+        \midrule
+        我们的实验结果
+         &
+        1675~Hz
+         &
+        7.7~Hz
+         &
+        0.7~Hz
+         &
+        27.8~Hz
+         &
+        $\qty(-0.4+4.9\mathrm{i})$ Hz \\
+        \cite{Zhong2020ReflectionAudioSounds}中的实验结果
+         &
+        1706~Hz
+         &
+        2.13~Hz
+         &
+        1.77~Hz
+         &
+        24~Hz
+         &
+        $\qty(-11+3.9\mathrm{i})$ Hz  \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:f20}
+\end{table}
+
+
+\section{公式}
+式(\ref{eq:29jf2}) 是有编号的公式示例。
+\begin{equation}
+    f(x) = \int_0^x t\sin t \dd t
+    \label{eq:29jf2}
+\end{equation}
+
+\section{引用}
+引用示例\cite[图1]{Zhong2020InsertionLossThin}。
+
+\section{列表}
+\noindent {\bfseries \color{njuviolet}信号失真} \hfill {\color{njuviolet}\faCalendar*} 2024/9/1 -- 2024/12/1 \hfill {\color{njuviolet}\faUsers} 李梦同、吴旭祥
+\begin{itemize}
+    \item 实验对比不同调制算法的性能，包括 DSBAM、SSBAM、SRAM 等
+    \item 使用 Volterra 滤波器进一步抑制非线性失真
+\end{itemize}
+
+
+\section{术语与英文缩写}
+% 正文中使用示例
+\gls{api} 是现代软件开发的核心组件。而 \gls{cpu} 和 \gls{gpu} 是计算机硬件的关键部件。
+再次提到 \gls{api}、\gls{cpu} 和 \gls{gpu} 时，仅显示缩写。
