@@ -1,4 +1,21 @@
-\ProvidesClass{AcademicReportCn}[2024-8-29]
+\ProvidesClass{ProjectReportCn}[2024-8-29]
+
+
+% -- 处理用户传入的语言选项 --
+\newif\if@enlang % 新建一个布尔变量
+
+\DeclareOption{en}{\@enlangtrue}
+\DeclareOption{cn}{\@enlangfalse}
+\ExecuteOptions{cn} % 默认中文
+\ProcessOptions\relax
+
+% 定义 \lang，供后面判断使用
+\if@enlang
+  \newcommand{\lang}{en}
+\else
+  \newcommand{\lang}{cn}
+\fi
+
 \LoadClass[openany]{report}
 
 %% set the gemetric info for the document
@@ -11,6 +28,9 @@
     top = 2.54cm, % Top margin
     bottom = 2.54cm, % Bottom margin
 }
+
+
+\usepackage{ifthen}
 
 %% figures
 \usepackage{graphicx}
@@ -34,7 +54,11 @@
 \fancyhead[L]{\leftmark}
 \fancyhead[R]{\rightmark}
 % \renewcommand{\headrule}{}
-\fancyfoot[C]{第~{\thepage}~页 | 共~{\pageref*{LastPage}}~页}
+\ifthenelse{\equal{\lang}{cn}}{
+    \fancyfoot[C]{第~{\thepage}~页 | 共~{\pageref*{LastPage}}~页}
+}{
+    \fancyfoot[C]{Page~{\thepage} of {\pageref*{LastPage}}}
+}
 \fancyfoot[L]{\titlestr}
 \fancyfoot[R]{\datestr}
 % 设置页脚线
@@ -46,14 +70,22 @@
 \fancypagestyle{firststyle}
 {
     \fancyhf{}
-    \fancyfoot[C]{第\,{\thepage}\,页 | 共\,{\pageref*{LastPage}}\,页}
+    \ifthenelse{\equal{\lang}{cn}}{
+        \fancyfoot[C]{第~{\thepage}~页 | 共~{\pageref*{LastPage}}~页}
+    }{
+        \fancyfoot[C]{Page~{\thepage} of {\pageref*{LastPage}}}
+    }
     \fancyfoot[L]{\titlestr}
     \fancyfoot[R]{\datestr}
 }
 \fancypagestyle{plain}{%
     \fancyhf{}%
     \renewcommand{\headrule}{}
-    \fancyfoot[C]{第\,{\thepage}\,页 | 共\,\pageref*{LastPage}\,页}
+    \ifthenelse{\equal{\lang}{cn}}{
+        \fancyfoot[C]{第~{\thepage}~页 | 共~{\pageref*{LastPage}}~页}
+    }{
+        \fancyfoot[C]{Page~{\thepage} of {\pageref*{LastPage}}}
+    }
     \fancyfoot[L]{\titlestr}
     \fancyfoot[R]{\datestr}
 }
@@ -71,8 +103,11 @@
 \usepackage{lipsum}
 \usepackage{zhlipsum}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % enable Chinese
 \usepackage[UTF8]{ctex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \usepackage{fontawesome5}
 \usepackage{njuvisual}
@@ -164,7 +199,11 @@
 }
 
 
-\renewcommand{\lstlistingname}{{\color{njupurple}\faFileCode[regular]} 代码}% Listing -> 代码
+\ifthenelse{\equal{\lang}{cn}}{
+    \renewcommand{\lstlistingname}{{\color{njupurple}\faFileCode[regular]} 代码}% Listing -> 代码
+}{
+    \renewcommand{\lstlistingname}{{\color{njupurple}\faFileCode[regular]} Code}% Listing -> 代码
+}
 
 % 将代码的字体设置为 Consolas
 \setmonofont{Consolas}
@@ -209,3 +248,4 @@
 
 % 打开书签
 \usepackage[open, numbered]{bookmark}
+

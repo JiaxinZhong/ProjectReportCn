@@ -1,6 +1,7 @@
-\documentclass{ProjectReportCn}
+\documentclass[en]{ProjectReportCn}
 % 使用注意：
 %   - 编译工具：XeLaTeX；不支持 PDFLaTeX
+%   - 参数 cn 表示中文，en 表示英文
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 定义缩写，3个括号内分别是 索引名、缩写、全称
@@ -9,6 +10,31 @@
 \newacronym{api}{API}{Application Programming Interface}
 \newacronym{cpu}{CPU}{Central Processing Unit 中央处理器}
 \newacronym{gpu}{GPU}{Graphics Processing Unit}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 中英文章节标题处理
+\ifthenelse{\equal{\lang}{en}}{
+  \renewcommand{\chaptername}{Chapter}
+}{
+  \renewcommand{\chaptername}{第\,\thechapter\,章}
+}
+
+% 自定义章节标题格式：Chapter n Title or 第n章 标题
+\makeatletter
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent \z@ \centering
+    \normalfont\Huge\bfseries
+    \ifthenelse{\equal{\lang}{en}}{
+      \chaptername\ \thechapter\quad #1
+    }{
+      \chaptername\quad #1
+    }
+    \par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -48,14 +74,50 @@
 \addbibresource{biblatex.bib}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 语言处理
+\ifthenelse{\equal{\lang}{cn}}{
+    \renewcommand{\contentsname}{目录}
+    \renewcommand{\listfigurename}{插图目录}
+    \renewcommand{\listtablename}{表格目录}
+    \renewcommand{\acronymname}{缩略语}
+    \renewcommand{\glossaryname}{符号说明}
+    \renewcommand{\appendixname}{附录}
+    \renewcommand{\bibname}{参考文献} % 用于 book 类
+    \renewcommand{\refname}{参考文献} % 用于 article 类
+}{
+    \renewcommand{\contentsname}{Table of Contents}
+    \renewcommand{\listfigurename}{List of Figures}
+    \renewcommand{\listtablename}{List of Tables}
+    \renewcommand{\acronymname}{List of Abbreviations}
+    \renewcommand{\glossaryname}{List of Symbols}
+    \renewcommand{\appendixname}{Appendix}
+    \renewcommand{\bibname}{References}
+    \renewcommand{\refname}{References}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \renewcommand{\chaptermark}[1]{%
     \markboth{\thechapter. #1}{}}
 
 % 报告的标题
-\def\titlestr{中文项目报告模板}
+\ifthenelse{\equal{\lang}{cn}}{
+    \def\titlestr{中文项目报告模板}
+}{
+    \def\titlestr{English Project Report}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 报告的日期
-\def\datestr{\today}
-\date{\today}
+\usepackage{datetime2}  % 更灵活的日期处理
+\ifthenelse{\equal{\lang}{cn}}{
+    % \renewcommand{\dateseparator}{年}
+    \newcommand{\datestr}{\the\year 年 \number\month 月 \number\day 日}
+}{
+    \newcommand{\datestr}{\number\year-\number\month-\number\day}
+}
+\date{\datestr}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -79,6 +141,10 @@
     \vspace{-.5cm}
     {\LARGE \bfseries 声学研究所\\[5mm] 噪声控制与通信声学实验室}
 
+    \ifthenelse{\equal{\lang}{en}}{
+        {\LARGE \bfseries Institute of Acoustics\\[5mm] Audio Acoustics Laboratory}
+    }
+
     \vspace{4cm}
 
     { \fontsize{36}{72}\selectfont \bfseries \titlestr}
@@ -91,22 +157,40 @@
     \begin{minipage}[t]{.5\textwidth}
         \raggedright
         \doublespacing
-        {\LARGE \textbf{呈送}}\\
-        {\large 某某某}\\
-        {\large 某某技术有限公司}\\
-        {\large 地址}\\
-        {\large 电话: 0000-0000000}\\
-        {\large Email: foo@xxx.com}\\
+        \ifthenelse{\equal{\lang}{cn}}{
+            {\LARGE \textbf{呈送}}\\
+            {\large 某某某}\\
+            {\large 某某技术有限公司}\\
+            {\large 地址}\\
+            {\large 电话: 0000-0000000}\\
+            {\large Email: foo@xxx.com}\\
+        }{
+            {\LARGE \textbf{Submitted to}}\\
+            {\large Foo Name}\\
+            {\large ABC Technology Co., Ltd.}\\
+            {\large Address}\\
+            {\large Tel: 0000-0000000}\\
+            {\large Email: foo@xxx.com}\\
+        }
     \end{minipage}% 
     \begin{minipage}[t]{.5\textwidth}
         \raggedleft
         \doublespacing
-        {\LARGE \textbf{起草}}\\
-        {\large 某某某、某某某}\\
-        {\large 南京大学声学研究所}\\
-        {\large 南京 210093 中国}\\
-        {\large 电话: 0000-0000000}\\
-        {\large Email: foo@xxx.com}\\
+        \ifthenelse{\equal{\lang}{cn}}{
+            {\LARGE \textbf{起草}}\\
+            {\large 某某某、某某某}\\
+            {\large 南京大学声学研究所}\\
+            {\large 南京 210093 中国}\\
+            {\large 电话: 0000-0000000}\\
+            {\large Email: foo@xxx.com}\\
+        }{
+            {\LARGE \textbf{Prepared by}}\\
+            {\large Jia-Xin Zhong, et al.}\\
+            {\large Institute of Acoustics, Nanjing University}\\
+            {\large Nanjing 210093, China}\\
+            {\large Tel: 0000-0000000}\\
+            {\large Email: foo@xxx.com}\\
+        }
     \end{minipage}
 \end{titlepage}
 \makeatother
@@ -114,6 +198,11 @@
 
 %% 目录
 \pdfbookmark{目录}{contents}
+\ifthenelse{\equal{\lang}{cn}}{
+    \renewcommand{\contentsname}{目录}
+}{
+    \renewcommand{\contentsname}{Table of Contents}
+}
 \tableofcontents
 
 % 使用 第x页 | 共xx页的样式
@@ -122,9 +211,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 生成图索引页（单独成页，注释掉可取消）
 \clearpage
-\renewcommand{\listfigurename}{图索引} % 中文标题
+% \renewcommand{\listfigurename}{图索引} % 标题
 \phantomsection % 配合 hyperref 定位
-\addcontentsline{toc}{chapter}{图索引} % 将索引页加入目录（可选）
+\addcontentsline{toc}{chapter}{\listfigurename} % 将索引页加入目录（可选）
 \listoffigures
 % \thispagestyle{empty} % 取消索引页页眉页脚（可选）
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,9 +222,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 生成表索引页（单独成页）
 \clearpage
-\renewcommand{\listtablename}{表索引}
+% \renewcommand{\listtablename}{\listtablename}
 \phantomsection
-\addcontentsline{toc}{chapter}{表索引}
+\addcontentsline{toc}{chapter}{\listtablename}
 \listoftables
 % \thispagestyle{empty}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -143,17 +232,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
 \phantomsection
-\addcontentsline{toc}{chapter}{缩写索引} % 加入目录（chapter层级）
-\printglossary[type=\acronymtype, title={缩写索引}, nonumberlist=false] % 显示页码
+\addcontentsline{toc}{chapter}{\acronymname} % 加入目录（chapter层级）
+\printglossary[type=\acronymtype, title={\acronymname}, nonumberlist=false] % 显示页码
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\chapter*{摘要}
-\addcontentsline{toc}{chapter}{摘要}
+\ifthenelse{\equal{\lang}{en}}{
+    \def\AbstractName{Abstract}
+}{
+    \def\AbstractName{摘要}
+}
+\chapter*{\AbstractName}
+\addcontentsline{toc}{chapter}{\AbstractName}
 这里撰写摘要内容，对全文进行总结，特别是读者比较关心的内容和数据。
 
 如果有项目验收指标，需要在这里总结项目方关心的数据，并针对性描述是否达到验收标准。
 例如：总谐波失真小于 10 \%，互调失真小于30 \%，满足项目验收目标。
+
+\lipsum[1]
 % \zhlipsum[1-3]
 
 \chapter{简介}
@@ -170,7 +266,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{appendices}
     % 标题风格
-    \titleformat{\chapter}{\centering\huge\bfseries}{附录\,\thechapter\,}{1em}{}
+    \titleformat{\chapter}{\centering\huge\bfseries}{\appendixname\,\thechapter\,}{1em}{}
 
     % 下面插入相应的 tex 文件
     \include{tex/app_derivation}
@@ -179,9 +275,10 @@
 
 
 %% biblatex
-\printbibliography[heading=bibintoc, title=参考文献]
+\printbibliography[heading=bibintoc, title=\bibname]
 
 %% bibtex
 % \bibliography{bibtex}
 
 \end{document}
+
