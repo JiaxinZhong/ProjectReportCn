@@ -249,3 +249,16 @@
 % 打开书签
 \usepackage[open, numbered]{bookmark}
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% 按键风格1
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{listingsutf8}  % 支持 UTF-8
+% 自定义按键样式
+\newtcbox{\key}{on line,
+  colback=gray!20, colframe=black,
+  boxrule=0.4pt, arc=3pt, outer arc=1pt,
+  boxsep=1pt, left=3pt, right=3pt, top=2pt, bottom=2pt,
+  fontupper=\ttfamily\bfseries
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
