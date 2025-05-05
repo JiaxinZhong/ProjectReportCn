@@ -106,6 +106,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % enable Chinese
 \usepackage[UTF8]{ctex}
+\ifthenelse{\equal{\lang}{en}}{
+    % 将“图”修改为“Fig.”
+    \renewcommand{\figurename}{Fig.}
+    % 如果需要，也可以修改“表”为“Table”
+    \renewcommand{\tablename}{Table}
+}{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
