@@ -53,7 +53,7 @@ def AbsorpAttenCoef(freq, temperature=20, pressure=101.325, humidity=70):
     f_rN = pressure / pr * (T / T0) ** (-1 / 2) * (9 + 280 * h * np.exp(-4.17 * ((T / T0) ** (-1 / 3) - 1)))
     alpha_Np = freq ** 2 * (1.84 * 10 ** (-11) * pr / pressure * (T / T0) ** (-1 / 2) + (T / T0) ** (-5 / 2) * (
             0.01275 * np.exp(-2239.1 / T) / (f_rO + freq ** 2 / f_rO) + 0.1068 * np.exp(-3352.0 / T) / (
-            f_rN + freq ** 2 / f_rN)))
+            f_rN + freq ** 2 / f_rN))) # |\label{line:alpha_Np_python}|
     alpha_dB = 20 / np.log(10) * alpha_Np
 
     return alpha_Np, alpha_dB

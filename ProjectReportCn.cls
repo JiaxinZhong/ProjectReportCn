@@ -51,8 +51,9 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} % clear existing header/footer entries
-\fancyhead[L]{\leftmark}
-\fancyhead[R]{\rightmark}
+% 页眉的显示
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyhead[R]{\nouppercase{\rightmark}}
 % \renewcommand{\headrule}{}
 \ifthenelse{\equal{\lang}{cn}}{
     \fancyfoot[C]{第~{\thepage}~页 | 共~{\pageref*{LastPage}}~页}
@@ -176,6 +177,7 @@
     basicstyle=\ttfamily\small,
     belowcaptionskip=8pt, % 增大caption与代码之间的间距
     numberstyle=\tiny\emptyaccsupp, % 将行号包装为 ActualText 为空。关键作用：PDF中代码复制时不会包含行号
+    escapechar=|,
 }
 
 % Python 自定义代码风格
@@ -201,7 +203,8 @@
     backgroundcolor=\color{gray!2},                 % 代码块背景为非常浅的灰色
     captionpos=t,                                   % caption（标题）显示在顶部
     xleftmargin=0em,                                % 左边距，用于对齐编号和代码体
-    xrightmargin=0em                                % 右边距，防止代码太贴边
+    xrightmargin=0em,                                % 右边距，防止代码太贴边
+    escapechar=|, % 用于代码的引用
 }
 
 

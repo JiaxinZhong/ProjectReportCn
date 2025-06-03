@@ -1,4 +1,4 @@
-\documentclass[en]{ProjectReportCn}
+\documentclass[cn]{ProjectReportCn}
 % 使用注意：
 %   - 编译工具：XeLaTeX；不支持 PDFLaTeX
 %   - 参数 cn 表示中文，en 表示英文
@@ -20,21 +20,29 @@
   \renewcommand{\chaptername}{第\,\thechapter\,章}
 }
 
-% 自定义章节标题格式：Chapter n Title or 第n章 标题
-\makeatletter
-\def\@makechapterhead#1{%
-  \vspace*{50\p@}%
-  {\parindent \z@ \centering
-    \normalfont\Huge\bfseries
-    \ifthenelse{\equal{\lang}{en}}{
-      \chaptername\ \thechapter\quad #1
-    }{
-      \chaptername\quad #1
-    }
-    \par\nobreak
-    \vskip 40\p@
-  }}
-\makeatother
+% \ifthenelse{\equal{\lang}{cn}}{
+    % 自定义章节标题格式：Chapter n Title or 第n章 标题
+    \makeatletter
+    \def\@makechapterhead#1{%
+      \vspace*{50\p@}%
+      {\parindent \z@ \centering
+        \normalfont\huge\bfseries
+        \ifthenelse{\equal{\lang}{en}}{
+          \chaptername\ \thechapter\quad #1
+        }{
+          \chaptername\quad #1
+        }
+        \par\nobreak
+        \vskip 40\p@
+      }}
+    \makeatother
+% }{
+    % \titleformat{\chapter}[hang]{\bfseries\large}{\thechapter}{1em}{\bfseries}
+    % % 调整 chapter 与上下内容的间距
+    % \titlespacing*{\chapter}{0pt}{-10pt}{10pt}  % 左缩进，上间距，下间距
+    % \titleformat{\section}[hang]{\bfseries\normalsize}{\thesection}{1em}{\bfseries}
+    % \titleformat{\subsection}[hang]{\bfseries\normalsize}{\thesubsection}{1em}{\bfseries}
+% }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

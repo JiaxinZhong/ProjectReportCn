@@ -66,7 +66,7 @@ function [alpha_Np, alpha_dB] = AbsorpAttenCoef(freq, varargin)
     
     alpha_Np = freq.^2 .* (1.84*10^(-11) .* pr./ip.pressure .* (T./T0).^(1/2) ...
         + (T./T0).^(-5/2) .* (0.01275*exp(-2239.1./T)./(f_rO+freq.^2./f_rO) ...
-        + 0.1068*exp(-3352.0./T)./(f_rN+freq.^2./f_rN)) );
+        + 0.1068*exp(-3352.0./T)./(f_rN+freq.^2./f_rN)) );  % |\label{line:alpha_Np}|
 	alpha_dB = 20/log(10) * alpha_Np;
 end
 
