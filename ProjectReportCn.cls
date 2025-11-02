@@ -44,6 +44,7 @@
 \usepackage{physics}
 \usepackage{upgreek}
 \usepackage{mathtools}
+\usepackage{amssymb}
 
 %% Set the footer
 % see https://tex.stackexchange.com/questions/227/how-can-i-add-page-of-on-my-document
@@ -177,7 +178,7 @@
     basicstyle=\ttfamily\small,
     belowcaptionskip=8pt, % 增大caption与代码之间的间距
     numberstyle=\tiny\emptyaccsupp, % 将行号包装为 ActualText 为空。关键作用：PDF中代码复制时不会包含行号
-    escapechar=|,
+    escapechar=`,
 }
 
 % Python 自定义代码风格
@@ -204,7 +205,7 @@
     captionpos=t,                                   % caption（标题）显示在顶部
     xleftmargin=0em,                                % 左边距，用于对齐编号和代码体
     xrightmargin=0em,                                % 右边距，防止代码太贴边
-    escapechar=|, % 用于代码的引用
+    escapechar=`, % 用于代码的引用
 }
 
 
@@ -233,6 +234,8 @@
 
 % listings的caption居中
 \usepackage[justification=centering]{caption}
+\captionsetup[table]{skip=4pt} % 表格的题与下面的间距设置为这个值
+
 
 % 比较好看的字体
 \usepackage[OT2,T1]{fontenc}
@@ -275,4 +278,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 设置作者；可在chapter或section标题尾部添加，表示这一部分主要是谁写的，适合协作写作
 \newcommand\AddAuthor[1]{\texorpdfstring{\color{gray}{\ \small \faUser\ #1}}{}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{placeins}
+% 常用： 在需要强制浮动体（图表等）在此处结束时使用 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
