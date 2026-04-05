@@ -1,5 +1,5 @@
-\ProvidesClass{ProjectReportCn}[2024-8-29]
-
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{ProjectReportCn}
 
 % -- 处理用户传入的语言选项 --
 \newif\if@enlang % 新建一个布尔变量
@@ -16,10 +16,10 @@
   \newcommand{\lang}{cn}
 \fi
 
-\LoadClass[openany]{report}
+% \LoadClass[openany]{report}
 
 %% set the gemetric info for the document
-\usepackage{geometry}
+\RequirePackage{geometry}
 \geometry{
     paper = a4paper, % Change to letterpaper for US letter
     inner = 2.54cm, % Inner margin
@@ -30,26 +30,26 @@
 }
 
 
-\usepackage{ifthen}
+\RequirePackage{ifthen}
 
 %% figures
-\usepackage{graphicx}
-% \usepackage{subcaption}
+\RequirePackage{graphicx}
+% \RequirePackage{subcaption}
 
 %% table
-\usepackage{booktabs}
+\RequirePackage{booktabs}
 
 
 %% math
-\usepackage{physics}
-\usepackage{upgreek}
-\usepackage{mathtools}
-\usepackage{amssymb}
+\RequirePackage{physics}
+\RequirePackage{upgreek}
+\RequirePackage{mathtools}
+\RequirePackage{amssymb}
 
 %% Set the footer
 % see https://tex.stackexchange.com/questions/227/how-can-i-add-page-of-on-my-document
-\usepackage{lastpage}
-\usepackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{} % clear existing header/footer entries
 % 页眉的显示
@@ -94,20 +94,20 @@
 
 
 % 设置 linspacing
-\usepackage{setspace}
+\RequirePackage{setspace}
 \onehalfspacing
 
 % open book mark at arbitrary level
-\usepackage[open, numbered]{bookmark}
+\RequirePackage[open, numbered]{bookmark}
 % opt: numbered --- show numbers in the bookmark
 
 % for some dummy text
-\usepackage{lipsum}
-\usepackage{zhlipsum}
+\RequirePackage{lipsum}
+\RequirePackage{zhlipsum}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % enable Chinese
-\usepackage[UTF8]{ctex}
+\RequirePackage[UTF8]{ctex}
 \ifthenelse{\equal{\lang}{en}}{
     % 将“图”修改为“Fig.”
     \renewcommand{\figurename}{Fig.}
@@ -117,20 +117,20 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\usepackage{fontawesome5}
-\usepackage{njuvisual}
+\RequirePackage{fontawesome5}
+\RequirePackage{njuvisual}
 
 
 %% font
-\usepackage{metalogo}
+\RequirePackage{metalogo}
 
 
 % set heading styles
-\usepackage{titlesec}
+\RequirePackage{titlesec}
 \titleformat{\chapter}{\centering\huge\bfseries}{第\,\thechapter\,章}{1em}{}
 
 % 目录显示点
-\usepackage[titles]{tocloft}
+\RequirePackage[titles]{tocloft}
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
@@ -139,21 +139,21 @@
 % \renewcommand{\cftfigpagefont}{\small}  % 页码文字
 
 % 修改目录
-\usepackage{titletoc}
+\RequirePackage{titletoc}
 
 % see https://tex.stackexchange.com/questions/226481/appendix-section-title
-\usepackage[title, titletoc]{appendix}
+\RequirePackage[title, titletoc]{appendix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 插入代码块
 
 % accsupp 宏包提供的 \BeginAccSupp/\EndAccSupp 来设定PDF内容的 ActualText
-\usepackage{accsupp}
+\RequirePackage{accsupp}
 \newcommand{\emptyaccsupp}[1]{\BeginAccSupp{ActualText={}}#1\EndAccSupp{}}
 
-\usepackage{listings}
+\RequirePackage{listings}
 
-\usepackage[numbered,framed]{matlab-prettifier}
+\RequirePackage[numbered,framed]{matlab-prettifier}
 
 % 默认字体改成 tt
 \lstset{basicstyle=\ttfamily}
@@ -233,25 +233,25 @@
 
 
 % listings的caption居中
-\usepackage[justification=centering]{caption}
+\RequirePackage[justification=centering]{caption}
 \captionsetup[table]{skip=4pt} % 表格的题与下面的间距设置为这个值
 
 
 % 比较好看的字体
-\usepackage[OT2,T1]{fontenc}
+\RequirePackage[OT2,T1]{fontenc}
 \DeclareSymbolFont{cyrletters}{OT2}{wncyr}{m}{n}
 \DeclareMathSymbol{\Sha}{\mathalpha}{cyrletters}{"58}
-% \usepackage{tgtermes}
-\usepackage{fontspec} % 用于 XeLaTeX 或 LuaLaTeX
+% \RequirePackage{tgtermes}
+\RequirePackage{fontspec} % 用于 XeLaTeX 或 LuaLaTeX
 \setmainfont{TeX Gyre Termes} % 调用系统中可用的 TeX Gyre Termes 字体
 
-\usepackage{xcolor}
+\RequirePackage{xcolor}
 
 % 支持 itemize 环境下的 itemsep
-\usepackage{enumitem}
+\RequirePackage{enumitem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[acronym, shortcuts]{glossaries} % 缩写索引功能
+\RequirePackage[acronym, shortcuts]{glossaries} % 缩写索引功能
 \setglossarystyle{list} % 带页码的列表样式
 \setacronymstyle{short-long}
 \makeglossaries % 激活索引生成
@@ -259,12 +259,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % 打开书签
-\usepackage[open, numbered]{bookmark}
+\RequirePackage[open, numbered]{bookmark}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%% 按键风格1
-\usepackage[most]{tcolorbox}
+\RequirePackage[most]{tcolorbox}
 \tcbuselibrary{listingsutf8}  % 支持 UTF-8
 % 自定义按键样式
 \newtcbox{\key}{on line,
@@ -282,6 +282,6 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage{placeins}
+\RequirePackage{placeins}
 % 常用： 在需要强制浮动体（图表等）在此处结束时使用 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
