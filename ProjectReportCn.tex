@@ -85,6 +85,11 @@
 \addbibresource{biblatex.bib}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+\newcommand{\manualinput}[1]{%
+    \IfFileExists{#1.tex}{\input{#1}}{\input{docs/manual/#1}}%
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 语言处理
 \ifthenelse{\equal{\lang}{cn}}{
