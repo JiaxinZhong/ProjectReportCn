@@ -1,5 +1,5 @@
 \documentclass[openany]{report} 
-\usepackage[en]{ProjectReportCn}
+\usepackage[cn]{ProjectReportCn}
 % 使用注意：
 %   - 编译工具：XeLaTeX；不支持 PDFLaTeX
 %   - 通常是：XeLaTeX -> Biber -> XeLaTeX*2
@@ -114,8 +114,10 @@
 % 报告的标题
 \ifthenelse{\equal{\lang}{cn}}{
     \def\titlestr{中文项目报告模板}
+    \def\shorttitlestr{短标题}
 }{
-    \def\titlestr{English Project Report}
+    \def\titlestr{English Project Report Here is the Title}
+    \def\shorttitlestr{Short Title}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -150,15 +152,18 @@
     \end{tikzpicture}
 
     \vspace{-.5cm}
-    {\LARGE \bfseries 声学研究所\\[5mm] 噪声控制与通信声学实验室}
+    {\LARGE \bfseries 声学研究所\\[5mm] 音频声学实验室}
 
     \ifthenelse{\equal{\lang}{en}}{
         {\LARGE \bfseries Institute of Acoustics\\[5mm] Audio Acoustics Laboratory}
     }
 
-    \vspace{4cm}
+    \vspace{2cm}
 
-    { \fontsize{36}{72}\selectfont \bfseries \titlestr}
+    \begin{minipage}{0.75\paperwidth}
+        \centering
+        {\fontsize{24}{24}\selectfont\bfseries \titlestr\par}
+    \end{minipage}
 
     \vspace{.5cm}
     {\bfseries \Large \@date}

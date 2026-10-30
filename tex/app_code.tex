@@ -1,7 +1,9 @@
 \chapter{代码}
 
-\zhlipsum[2]
-\section{大气中声吸收系数的计算}
+\section{引用代码中的某一行}
+在正文中引用某代码（如代码~\ref{code:matlab:absorp}~中的第~\ref{line:alpha_Np}~行），需要在代码中相应行的末尾加上注释 \verb|`\label{line:alpha_Np}`|，然后在正文中使用 \verb|\ref{line:alpha_Np}| 即可。
+
+\section{示例：大气中声吸收系数的计算}
 MATLAB 和 Python 代码分别见代码\,\ref{code:matlab:absorp}\,和\,\ref{code:python:absorp}\,所示。
 提交报告时，请将有关代码整体存到 \codeinline{code/} 文件夹下。
 
